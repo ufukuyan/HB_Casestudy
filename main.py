@@ -15,7 +15,7 @@ def token_auth(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
+# Calling prediction method with list of product id.
 @app.route('/predict', methods=['POST'])
 @token_auth
 def predict():
@@ -25,6 +25,7 @@ def predict():
     recommendations = recommender.predict_products(product_list['cart'])
     return {'recommended_products': recommendations}
 
+# Calling training method with full path of product meta data file.
 @app.route('/train')
 @token_auth
 def train():
